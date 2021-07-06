@@ -29,6 +29,10 @@ namespace QuieroPizza.WebAdmin.Controllers
         public ActionResult Crear()
         {
             var nuevoProducto = new Producto();
+            var categorias = _categoriasBL.ObtenerCategorias();
+
+            ViewBag.CategoriaId =
+                new SelectList(categorias, "Id", "Descripcion");
 
             return View(nuevoProducto);
         }
@@ -40,13 +44,15 @@ namespace QuieroPizza.WebAdmin.Controllers
             {
                 if (producto.CategoriaId == 0)
                 {
-                    ModelState.AddModelError("Categoria", "Ingrese una Categoria");
+                    ModelState.AddModelError("CategoriaId", "Seleccione una cstegoria");
                     return View(producto);
                 }
+
                 if (imagen != null)
                 {
                     producto.UrlImagen = GuardarImagen(imagen);
                 }
+
                 _productosBL.GuardarProducto(producto);
 
                 return RedirectToAction("Index");
@@ -77,7 +83,7 @@ namespace QuieroPizza.WebAdmin.Controllers
             {
                 if (producto.CategoriaId == 0)
                 {
-                    ModelState.AddModelError("Categoria", "Ingrese una Categoria");
+                    ModelState.AddModelError("CategoriaId", "Seleccione una cstegoria");
                     return View(producto);
                 }
 
@@ -121,7 +127,7 @@ namespace QuieroPizza.WebAdmin.Controllers
             string path = Server.MapPath("~/Imagenes/" + imagen.FileName);
             imagen.SaveAs(path);
 
-            return "/Imagenes/" + imagen.FileName;
+            return"/Imagenes/" + imagen.FileName
         }
     }
 }

@@ -17,7 +17,7 @@ namespace QuieroPizza.BL
         public int Id { get; set; }
 
         [Display(Name = "Descripcion")]
-        [Required(ErrorMessage ="Ingrese la descripcion")]
+        [Required(ErrorMessage = "Ingrese la descripcion")]
         [MinLength(3, ErrorMessage = "Ingrese minimo 3 caracteres")]
         [MaxLength(20, ErrorMessage = "Ingrese maximo de 20 caracteres")]
         public string Descripcion { get; set; }

@@ -30,7 +30,6 @@ namespace QuieroPizza.WebAdmin.Controllers
 
             return View(nuevaCategoria);
         }
-
         [HttpPost]
         public ActionResult Crear(Categoria categoria)
         {
@@ -41,21 +40,16 @@ namespace QuieroPizza.WebAdmin.Controllers
                     ModelState.AddModelError("Descripcion", "La descripcion no debe contener espcios al inicio o al final");
                     return View(categoria);
                 }
+                
                 _categoriasBL.GuardarCategoria(categoria);
 
                 return RedirectToAction("Index");
             }
 
             return View(categoria);
-           
+
         }
 
-        public ActionResult Editar(int id)
-        {
-            var producto = _categoriasBL.ObtenerCategoria(id);
-
-            return View(producto);
-        }
 
         [HttpPost]
         public ActionResult Editar(Categoria categoria)
@@ -67,6 +61,7 @@ namespace QuieroPizza.WebAdmin.Controllers
                     ModelState.AddModelError("Descripcion", "La descripcion no debe contener espcios al inicio o al final");
                     return View(categoria);
                 }
+
                 _categoriasBL.GuardarCategoria(categoria);
 
                 return RedirectToAction("Index");

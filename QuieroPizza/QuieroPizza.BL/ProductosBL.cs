@@ -35,7 +35,6 @@ namespace QuieroPizza.BL
             } else
             {
                 var productoExistente = _contexto.Productos.Find(producto.Id);
-
                 productoExistente.Descripcion = producto.Descripcion;
                 productoExistente.CategoriaId = producto.CategoriaId;
                 productoExistente.Precio = producto.Precio;
@@ -59,6 +58,11 @@ namespace QuieroPizza.BL
 
             _contexto.Productos.Remove(producto);
             _contexto.SaveChanges();
+        }
+
+        public object ObtenerProducto(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

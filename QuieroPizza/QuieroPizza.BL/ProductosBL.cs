@@ -59,10 +59,5 @@ namespace QuieroPizza.BL
             _contexto.Productos.Remove(producto);
             _contexto.SaveChanges();
         }
-
-        public object ObtenerProducto(int id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

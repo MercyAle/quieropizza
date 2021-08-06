@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace QuieroPizza.WebAdmin.Controllers
 {
+    [Authorize]
     public class OrdenesController : Controller
     {
         OrdenesBL _ordenesBL;
@@ -29,7 +30,7 @@ namespace QuieroPizza.WebAdmin.Controllers
         public ActionResult Crear()
         {
             var nuevaOrden = new Orden();
-            var clientes = _clientesBL.ObtenerClientes();
+            var clientes = _clientesBL.ObtenerClientesActivos();
 
             ViewBag.ClienteId = new SelectList(clientes, "Id", "Nombre");
 
@@ -62,7 +63,7 @@ namespace QuieroPizza.WebAdmin.Controllers
         public ActionResult Editar(int id)
         {
             var orden = _ordenesBL.ObtenerOrden(id);
-            var clientes = _clientesBL.ObtenerClientes();
+            var clientes = _clientesBL.ObtenerClientesActivos();
 
             ViewBag.ClienteId = new SelectList(clientes, "Id", "Nombre", orden.ClienteId);
 
